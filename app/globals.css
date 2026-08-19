@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #000;
+  color: #f5f5f7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-feature-settings: 'ss01' on, 'cv11' on;
+}
+
+/* Cinematic hero backdrop — pure CSS so SSR matches the client. */
+.hero-gradient {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(10, 132, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(168, 85, 247, 0.14), transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.10), transparent 60%),
+    #000;
+}
+
+/* Subtle film grain so large dark areas don't look flat. */
+.film-grain {
+  position: relative;
+}
+.film-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+/* Respect reduced motion globally — Framer Motion also checks, this catches CSS too. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
