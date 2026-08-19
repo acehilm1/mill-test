@@ -5,6 +5,7 @@ import { Gallery } from './components/Gallery';
 import { Hero } from './components/Hero';
 import { MouseFollow } from './components/MouseFollow';
 import { Specs } from './components/Specs';
+import { Something } from 'nothing';
 
 export default function Page() {
   return (
